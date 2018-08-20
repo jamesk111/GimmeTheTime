@@ -34,11 +34,14 @@ function updateDateTime() {
 
     //Initialize
     let today = new Date();
+    let timeHours = ('0' + (((today.getHours() + 11) % 12) + 1)).slice(-2);
+    let timeMinutes = ('0' + today.getMinutes()).slice(-2);
+    let timeSeconds = ('0' + today.getSeconds()).slice(-2);
     let timeSuffix = (today.getHours() < 12) ? 'AM' : 'PM';
 
     // Set the data
-    document.getElementById('date').innerHTML = day[today.getDay()] + ', ' + month[today.getMonth()] + ordinalDate(today.getDate()) + ', ' + today.getFullYear();
-    document.getElementById('time').innerHTML = (((today.getHours() + 11) % 12) + 1) + ':' + today.getMinutes() + ':' + today.getSeconds() + ' ' + timeSuffix;
+    document.getElementById('date').innerHTML = day[today.getDay()] + ', ' + month[today.getMonth()] + ' ' + ordinalDate(today.getDate()) + ', ' + today.getFullYear();
+    document.getElementById('time').innerHTML = timeHours + ':' + timeMinutes + ':' + timeSeconds + ' ' + timeSuffix;
 }
 
 //Set the function interval to update the time every second
